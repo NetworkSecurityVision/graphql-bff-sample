@@ -4,6 +4,7 @@
         "dev": "nodemon -e 'js,json,gql' app.js"
     },
     "dependencies": {
+        "@elastic/elasticsearch": "^7.10.0",
         "@grpc/grpc-js": "1.1.6",
         "apollo-server": "2.17.0",
         "casual": "1.6.2",
