@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "thrift": "^0.13.0-hotfix.1"
+    }
+}
