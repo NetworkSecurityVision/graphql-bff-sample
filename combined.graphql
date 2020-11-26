@@ -1,0 +1,33 @@
+# DO NOT CHANGE! this is auto generated file.
+# Thu Nov 26 2020 16:32:45 GMT+0800 (China Standard Time)
+
+# a.gql
+type A {
+    int: Int
+    float: Float
+    id: ID
+    bool: Boolean
+}
+
+enum Episode {
+    B1
+    B2
+    B3
+}
+
+type B {
+    str: String
+    episode: Episode
+}
+
+# mutation.gql
+
+# query.gql
+type Query {
+    a: A
+    b: B
+    data: JSON
+    ping: String
+}
+# scalars.gql
+scalar JSON

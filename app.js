@@ -1,55 +1,45 @@
-const { ApolloServer, gql } = require("apollo-server-express");
-const fs = require("fs");
-const path = require("path");
-const express = require("express");
-const app = express();
-
+// env first
 require("dotenv").config();
 
-function readSchemaFile() {
-    let read = (fname) =>
-        fs.readFileSync(path.join(__dirname, `./schema/${fname}`), "utf-8");
+const express = require("express");
+// 用 apollo-server-express 才能自定义 entry path
+const { ApolloServer, gql } = require("apollo-server-express");
 
-    let schema = "";
-    let dir = fs.readdirSync("./schema", { withFileTypes: true });
-    for (dirent of dir) {
-        if (dirent.isFile()) schema += read(dirent.name);
-    }
-    return schema;
-}
+const app = express();
+const Defines = require("./defines");
 
-const typeDefs = gql(readSchemaFile());
 const resolvers = require("./resolvers");
-const mocks = process.env.MOCK == "true" ? require("./utils/mocks") : false;
+const mocks = require("./mocks");
+const logger = require("./logger");
+const plugins = require("./plugins");
 
 const server = new ApolloServer({
     cors: true,
-    typeDefs,
+    typeDefs: gql(Defines),
     resolvers,
-    context: (req) => {
-        let body = req.req.body;
-        if (!body.operationName) console.log(body.query);
-    },
     // 允许在生产环境使用模型描述
     playground: true,
     introspection: true,
-    mocks,
-    formatError: (error) => {
-        return error;
+    mocks: process.env.BFF_MOCK ? mocks : false,
+    context: (req) => ({}),
+    formatError: (e) => {
+        logger.error(e.extensions.exception?.stacktrace.slice(0, 2).join("\n"));
+        return e;
     },
     tracing: process.env.NODE_ENV == "development",
+    plugins: plugins,
+    logger: logger,
 });
+
 server.applyMiddleware({
     app,
-    path: process.env.BASE_PATH,
+    path: process.env.BFF_BASE_PATH,
     disableHealthCheck: false,
 });
 
-app.listen({ port: 4000 }, () => {
-    console.log(`🚀 Server ready, ${server.graphqlPath}`);
-});
-
-// WARN, if ENV is not set
-["GRPC_PEDESTAL_URI", "HTTP_HAOJING_URI"].forEach((i) => {
-    if (!process.env[i]) console.warn(`env ${i} is missing`);
+const port = process.env.BFF_PORT || 5910;
+app.listen({ port }, () => {
+    // 服务启动日志
+    let { graphqlPath } = server;
+    logger.startEngine({ port, graphqlPath });
 });

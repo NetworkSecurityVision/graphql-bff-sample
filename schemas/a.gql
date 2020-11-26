@@ -1,0 +1,17 @@
+type A {
+    int: Int
+    float: Float
+    id: ID
+    bool: Boolean
+}
+
+enum Episode {
+    B1
+    B2
+    B3
+}
+
+type B {
+    str: String
+    episode: Episode
+}

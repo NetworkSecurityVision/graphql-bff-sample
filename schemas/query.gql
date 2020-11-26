@@ -1,0 +1,6 @@
+type Query {
+    a: A
+    b: B
+    data: JSON
+    ping: String
+}

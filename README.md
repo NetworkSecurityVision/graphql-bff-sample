@@ -10,7 +10,7 @@ This reference project is not a general solution, please make sure you understan
 
 ## Principal
 
-Again it's not for general purpose, so please follow the principals to carry out best practice. 
+Again it's not for general purpose, so please follow the principals to carry out best practice.
 
 **Stateless**
 
@@ -24,34 +24,40 @@ Don't misstaken, I like TypeScript and I use it in every new frontend project. I
 
 As we use GraphQL, and this service is part of frontend, we should not write those obscure APIs.
 
-## Folder
+## Folders
 
-```
-.env
-app.js
-schemas/
-    a.gql
-    b.gal
-resolvers/
-    a.js
-    b.js
-drivers/
-    http.js
-    grpc.js
-    thrift.js
-    nacos.js
-logs/
-    error.log
-    access.log
-```
+-   drivers
 
-## TODO
+    As a stateless bff server, all data come from other services, differenet kind of services, so we need different ways to connect with other servers, here are all the utilities to connect other service. **Notice**: driver only provide communication tunnel, _NO_ business logic here.
 
-Drivers
+    -   `grpc.js` gRPC driver
+    -   `nacos.js` Nacos driver
+    -   `http.js` Http driver
+    -   ...others Other drivers
 
-- [ ] http/https
-- [ ] gRPC
-- [ ] thrift
-- [ ] nacos
+-   server-demo
 
-WebSocket: TODO
+    Simulate other services, and test does drivers work as expected. It's test only.
+
+-   logs
+
+    record bff server logs, and logs _SHOULD_ print to both files and stdout, the files record critical info and normal infomation print into stdout like terminal. For example, when we use docker, use `docker logs -f xxx` to follow rolling logs, and go into the docker to check important logs in `access.log` and `error.log`
+
+    -   `access.log` server routine log, _SHOULD_ be simpily
+    -   `error.log` record errors that in server
+
+    logs auto listen on process error `uncaughtException`, `unhandledRejection` and echo to `error.log` files
+
+-   defines.js
+
+    read graphql define files from `./schemas` folder combine them and validate and export to a single file and return a graphql document instance
+
+-   mocks TODO
+
+-   schemas TODO
+
+-   resolvers TODO
+
+-   app.js
+
+-   .env

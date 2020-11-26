@@ -1,3 +1,6 @@
 node_modules
-logs/
+logs/*
 !logs/.keep
+*.env
+.combined.graphql
+index.d.ts
