@@ -56,6 +56,10 @@ function error() {
     errLogger.error(...arguments);
 }
 
+function mark() {
+    appLogger.mark(...arguments);
+}
+
 function startEngine(obj) {
     let env = Object.fromEntries(
         Object.keys(process.env)
@@ -79,5 +83,5 @@ module.exports = {
     debug,
     info,
     warn,
-    startEngine,
+    mark,
 };

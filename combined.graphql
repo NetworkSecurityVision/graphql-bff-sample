@@ -1,5 +1,5 @@
 # DO NOT CHANGE! this is auto generated file.
-# Thu Nov 26 2020 16:32:45 GMT+0800 (China Standard Time)
+# Fri Nov 27 2020 13:09:56 GMT+0800 (China Standard Time)
 
 # a.gql
 type A {
@@ -21,13 +21,26 @@ type B {
 }
 
 # mutation.gql
+type File {
+    filename: String!
+    mimeType: String!
+    encoding: String!
+}
 
+type Mutation {
+    upload(file: Upload!): File!
+}
 # query.gql
 type Query {
     a: A
     b: B
     data: JSON
     ping: String
+    
 }
 # scalars.gql
 scalar JSON
+# subscription.gql
+type Subscription {
+    count: Int!
+}

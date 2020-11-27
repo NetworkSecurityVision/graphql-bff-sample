@@ -1,13 +1,5 @@
 const logger = require("../logger");
 
-function serverWillStart() {
-    console.log("server start");
-}
-
-function log() {
-    console.log(...arguments);
-}
-
 function requestDidStart() {
     let begin = new Date();
     return {
@@ -21,6 +13,5 @@ function requestDidStart() {
 }
 
 module.exports = {
-    serverWillStart,
     requestDidStart,
 };

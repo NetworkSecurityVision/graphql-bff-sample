@@ -32,8 +32,11 @@ function combine() {
     fs.writeFileSync(path.join(__dirname, SCHEMA_COMBINED_FILE), content);
 
     try {
+        let autoInjectByApollo = `
+            scalar Upload
+        `;
         // validate schame syntax
-        buildSchema(content);
+        buildSchema(content + autoInjectByApollo);
     } catch (e) {
         logger.error("Schema 文件语法错误\n", e.toString());
     }

@@ -3,4 +3,5 @@ type Query {
     b: B
     data: JSON
     ping: String
+    
 }

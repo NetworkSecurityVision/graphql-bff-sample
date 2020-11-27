@@ -1,5 +1,6 @@
 // env first
 require("dotenv").config();
+const http = require("http");
 
 const express = require("express");
 // 用 apollo-server-express 才能自定义 entry path
@@ -29,6 +30,17 @@ const server = new ApolloServer({
     tracing: process.env.NODE_ENV == "development",
     plugins: plugins,
     logger: logger,
+    subscriptions: {
+        onConnect: (params, webSocket) => {
+            console.log("websocket connected");
+            if (params.jwt) return Promise.resolve({});
+            else return Promise.resolve(true);
+            throw new Error("Auth failed!");
+        },
+        onDisconnect: (webSocket, context) => {
+            console.log("websocket disconnected");
+        },
+    },
 });
 
 server.applyMiddleware({
@@ -37,9 +49,26 @@ server.applyMiddleware({
     disableHealthCheck: false,
 });
 
+const httpServer = http.createServer(app);
+
+server.installSubscriptionHandlers(httpServer);
+
 const port = process.env.BFF_PORT || 5910;
-app.listen({ port }, () => {
-    // 服务启动日志
-    let { graphqlPath } = server;
-    logger.startEngine({ port, graphqlPath });
+
+httpServer.listen({ port }, () => {
+    let env = Object.keys(process.env)
+        .filter((i) => i.startsWith("BFF_"))
+        .map((i) => i + ": " + process.env[i])
+        .join("\n");
+
+    logger.mark(`
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+BFF Server Started 
+------------------------------------
+环境变量
+${env}
+------------------------------------
+port: ${port}
+path: ${server.graphqlPath}
+`);
 });
