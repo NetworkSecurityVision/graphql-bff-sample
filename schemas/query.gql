@@ -1,7 +1,12 @@
+"""
+这是一段文档
+可以写多行描述
+"""
 type Query {
     a: A
     b: B
+    " JSON 类型的数据，可以返回任意内容 "
     data: JSON
+    " PING 接口，测试服务器是否已经启动，固定返回内容 pong "
     ping: String
-    
 }

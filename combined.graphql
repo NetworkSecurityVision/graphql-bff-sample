@@ -1,5 +1,5 @@
 # DO NOT CHANGE! this is auto generated file.
-# Fri Nov 27 2020 13:09:56 GMT+0800 (China Standard Time)
+# Mon Nov 30 2020 12:51:45 GMT+0800 (China Standard Time)
 
 # a.gql
 type A {
@@ -15,7 +15,11 @@ enum Episode {
     B3
 }
 
+""" 
+这是B类型
+"""
 type B {
+    " 这是字符串字段 "
     str: String
     episode: Episode
 }
@@ -31,16 +35,122 @@ type Mutation {
     upload(file: Upload!): File!
 }
 # query.gql
+"""
+这是一段文档
+可以写多行描述
+"""
 type Query {
     a: A
     b: B
+    " JSON 类型的数据，可以返回任意内容 "
     data: JSON
+    " PING 接口，测试服务器是否已经启动，固定返回内容 pong "
     ping: String
-    
 }
+
 # scalars.gql
+scalar Date
+
+scalar Time
+
+scalar DateTime
+
+scalar Duration
+
+scalar UtcOffset
+
+scalar LocalDate
+
+scalar LocalTime
+
+scalar LocalEndTime
+
+scalar EmailAddress
+
+scalar NegativeFloat
+
+scalar NegativeInt
+
+scalar NonEmptyString
+
+scalar NonNegativeFloat
+
+scalar NonNegativeInt
+
+scalar NonPositiveFloat
+
+scalar NonPositiveInt
+
+scalar PhoneNumber
+
+scalar PositiveFloat
+
+scalar PositiveInt
+
+scalar PostalCode
+
+scalar UnsignedFloat
+
+scalar UnsignedInt
+
+scalar URL
+
+scalar ObjectID
+
+scalar BigInt
+
+scalar Long
+
+scalar SafeInt
+
+scalar UUID
+
+scalar GUID
+
+scalar HexColorCode
+
+scalar HSL
+
+scalar HSLA
+
+scalar IPv4
+
+scalar IPv6
+
+scalar ISBN
+
+scalar MAC
+
+scalar Port
+
+scalar RGB
+
+scalar RGBA
+
+scalar USCurrency
+
+scalar Currency
+
 scalar JSON
+
+scalar JSONObject
+
+scalar Byte
+
+scalar Void
+
+scalar Timestamp
+
+scalar ISO8601Duration
+
+scalar Hexadecimal
+
+scalar IBAN
+
 # subscription.gql
 type Subscription {
+    """
+    数据订阅接口，通过 WebSocket 协议监听内
+    """
     count: Int!
 }

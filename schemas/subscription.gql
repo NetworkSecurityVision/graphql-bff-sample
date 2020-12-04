@@ -1,3 +1,6 @@
 type Subscription {
+    """
+    数据订阅接口，通过 WebSocket 协议监听内
+    """
     count: Int!
 }

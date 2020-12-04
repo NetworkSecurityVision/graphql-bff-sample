@@ -11,7 +11,11 @@ enum Episode {
     B3
 }
 
+""" 
+这是B类型
+"""
 type B {
+    " 这是字符串字段 "
     str: String
     episode: Episode
 }

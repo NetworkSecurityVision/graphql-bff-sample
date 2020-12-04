@@ -1,13 +1,13 @@
 const Query = require("./query");
 const Mutation = require("./mutation");
 const Subscription = require("./subscription");
-const GraphQLJSON = require("graphql-type-json");
+const { resolvers: customScalarResolvers } = require("graphql-scalars");
 
 const resolvers = {
+    ...customScalarResolvers,
     Query,
     Mutation,
     Subscription,
-    JSON: GraphQLJSON,
 };
 
 module.exports = resolvers;

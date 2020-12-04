@@ -21,8 +21,8 @@ const server = new ApolloServer({
     // 允许在生产环境使用模型描述
     playground: true,
     introspection: true,
-    mocks: process.env.BFF_MOCK ? mocks : false,
-    context: (req) => ({}),
+    mocks: process.env.BFF_MOCK == "true" && mocks,
+    context: (ctx) => {},
     formatError: (e) => {
         logger.error(e.extensions.exception?.stacktrace.slice(0, 2).join("\n"));
         return e;
