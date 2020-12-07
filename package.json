@@ -2,10 +2,13 @@
     "engines": {
         "node": ">=14"
     },
+    "name": "graphql-practice",
+    "type": "module",
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon -e 'js,json,gql' app.js",
-        "test": "jest --config jest.config.js --coverage"
+        "test": "jest --config jest.config.js --coverage",
+        "type": "node types.js"
     },
     "dependencies": {
         "@elastic/elasticsearch": "7.10.0",

@@ -2,25 +2,24 @@
  * GraphQL Spec https://spec.graphql.cn/
  */
 
-const fs = require("fs");
-const path = require("path");
-let { buildSchema } = require("graphql");
+import fs from "fs";
+import path from "path";
+import { buildSchema } from "graphql";
 
 const SCHEMA_FOLDER = "./schemas";
 const SCHEMA_COMBINED_FILE = "./combined.graphql";
 
-const logger = require("./logger");
+import logger from "./logger.js";
 
 function readContent() {
-    let content = "",
-        folder = path.join(__dirname, SCHEMA_FOLDER);
-    let dir = fs.readdirSync(folder, {
+    let content = "";
+    let dir = fs.readdirSync(SCHEMA_FOLDER, {
         withFileTypes: true,
     });
-    for (dirent of dir)
+    for (let dirent of dir)
         if (dirent.isFile()) {
             content += `\n# ${dirent.name}\n`;
-            content += fs.readFileSync(path.join(folder, dirent.name), "utf-8");
+            content += fs.readFileSync(path.join(SCHEMA_FOLDER, dirent.name), "utf-8");
         }
     return content;
 }
@@ -29,7 +28,7 @@ function combine() {
     let content = `# DO NOT CHANGE! this is auto generated file.\n# ${new Date()}\n`;
     content += readContent();
 
-    fs.writeFileSync(path.join(__dirname, SCHEMA_COMBINED_FILE), content);
+    fs.writeFileSync(SCHEMA_COMBINED_FILE, content);
 
     try {
         let autoInjectByApollo = `
@@ -45,4 +44,4 @@ function combine() {
 
 const Defines = combine();
 
-module.exports = Defines;
+export default Defines;

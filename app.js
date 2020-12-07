@@ -1,18 +1,20 @@
 // env first
-require("dotenv").config();
-const http = require("http");
+import dotenv from "dotenv";
+dotenv.config();
 
-const express = require("express");
+import http from "http";
+
+import express from "express";
 // 用 apollo-server-express 才能自定义 entry path
-const { ApolloServer, gql } = require("apollo-server-express");
+import { ApolloServer, gql } from "apollo-server-express";
+
 
 const app = express();
-const Defines = require("./defines");
-
-const resolvers = require("./resolvers");
-const mocks = require("./mocks");
-const logger = require("./logger");
-const plugins = require("./plugins");
+import Defines from "./defines.js";
+import resolvers from "./resolvers/index.js";
+import mocks from "./mocks/index.js";
+import logger from "./logger.js";
+import plugins from "./plugins/index.js";
 
 const server = new ApolloServer({
     cors: true,

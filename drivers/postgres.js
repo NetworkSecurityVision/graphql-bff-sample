@@ -3,7 +3,7 @@
  * https://node-postgres.com/
  */
 
-const { Client } = require("pg");
+import { Client } from "pg";
 const client = new Client({
     user: "postgres",
     password: "mysecretpassword",

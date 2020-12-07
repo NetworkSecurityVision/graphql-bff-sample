@@ -2,10 +2,10 @@
  * https://github.com/alexguan/node-zookeeper-client
  */
 
-var zookeeper = require("node-zookeeper-client");
+import zookeeper from "node-zookeeper-client";
 
 var client = zookeeper.createClient("localhost:2181");
-var path = '/test'
+var path = "/test";
 
 client.once("connected", function () {
     console.log("Connected to the server.");

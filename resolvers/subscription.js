@@ -1,4 +1,4 @@
-const { PubSub } = require("apollo-server-express");
+import { PubSub } from "apollo-server-express";
 
 const pubsub = new PubSub();
 
@@ -13,6 +13,6 @@ const count = {
     subscribe: () => pubsub.asyncIterator([POST_ADDED]),
 };
 
-module.exports = {
+export default {
     count,
 };

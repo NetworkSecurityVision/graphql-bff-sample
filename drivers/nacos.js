@@ -1,4 +1,4 @@
-const NacosConfigClient = require("nacos").NacosConfigClient;
+import { NacosConfigClient } from "nacos";
 
 // for direct mode
 const configClient = new NacosConfigClient({
@@ -16,11 +16,7 @@ const configClient = new NacosConfigClient({
     );
 
     // publish config
-    let c2 = await configClient.publishSingle(
-        "test",
-        "DEFAULT_GROUP",
-        "测试"
-    );
+    let c2 = await configClient.publishSingle("test", "DEFAULT_GROUP", "测试");
     console.log("getConfig = ", c2);
 
     // remove config
@@ -35,7 +31,7 @@ const configClient = new NacosConfigClient({
   采用直接访问接口方式，访问方法参考 nacos Python 库实现
   // 参考 https://github.com/nacos-group/nacos-sdk-python/blob/279a0d3f066a180039f05f445ba92d6ee5e6e1c3/nacos/client.py#L364
 */
-const got = require("got");
+import got from "got";
 function getConfigWithPassword(group, dataId, username, password) {
     const { NACOS_URI } = process.env;
     let PATH = NACOS_URI + "/nacos/v1/cs/configs";

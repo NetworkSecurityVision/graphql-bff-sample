@@ -6,7 +6,7 @@ https://www.elastic.co/cn/
 文档： https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html
 
 */
-const { Client } = require("@elastic/elasticsearch");
+import { Client } from "@elastic/elasticsearch";
 const client = new Client({ node: "http://localhost:9200" });
 
 client.cat.health({}, (err, res) => {

@@ -6,9 +6,9 @@ gRPC node 文档
 https://grpc.github.io/grpc/node/
 */
 
-const grpc = require("@grpc/grpc-js");
-const loader = require("@grpc/proto-loader");
-const path = require("path");
+import grpc from "@grpc/grpc-js";
+import loader from "@grpc/proto-loader";
+import path from "path";
 
 function client(filename, packageName, service) {
     const definition = loader.loadSync(`${filename}`, {
@@ -21,8 +21,8 @@ function client(filename, packageName, service) {
         // proto 文件会有互相引用的情况，所以 includeDirs 参数可以指定引用的根路径
         // 通过指定 includeDirs 可以支持大项目的 proto 文件定义
         includeDirs: [
-            path.join(__dirname, ".."),
-            path.join(__dirname, "../api/protobuf-spec"),
+            path.join(import.meta.url, ".."),
+            path.join(import.meta.url, "../api/protobuf-spec"),
         ],
     });
     const proto = grpc.loadPackageDefinition(definition);

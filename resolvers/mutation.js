@@ -7,6 +7,6 @@ function upload(parent, args) {
     });
 }
 
-module.exports = {
+export default {
     upload,
 };

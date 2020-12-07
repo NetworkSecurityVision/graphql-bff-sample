@@ -1,7 +1,7 @@
 /**
  * https://github.com/SOHU-Co/kafka-node
  */
-let kafka = require("kafka-node");
+import kafka from "kafka-node";
 let client = new kafka.KafkaClient({
     kafkaHost: "localhost:9092",
     connectTimeout: 3000,

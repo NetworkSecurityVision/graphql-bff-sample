@@ -1,4 +1,4 @@
-const logger = require("../logger");
+import logger from "../logger.js";
 
 function requestDidStart() {
     let begin = new Date();
@@ -12,6 +12,6 @@ function requestDidStart() {
     };
 }
 
-module.exports = {
+export default {
     requestDidStart,
 };

@@ -1,13 +1,12 @@
-const { codegen } = require("@graphql-codegen/core");
-const { buildSchema } = require("graphql");
-const fs = require("fs");
-const path = require("path");
-const typescriptPlugin = require("@graphql-codegen/typescript");
+import { codegen } from "@graphql-codegen/core";
+import { buildSchema } from "graphql";
+import fs from "fs";
+import path from "path";
+import typescriptPlugin from "@graphql-codegen/typescript";
 
 async function gen() {
     let content = fs.readFileSync("./combined.graphql");
     let schema = buildSchema(String(content));
-
 
     let types = await codegen({
         schema,
@@ -15,7 +14,7 @@ async function gen() {
         pluginMap: { typescript: typescriptPlugin },
     });
 
-    fs.writeFileSync(path.join(__dirname, "./index.d.ts"), types);
+    fs.writeFileSync("./index.d.ts", types);
 }
 
 gen();

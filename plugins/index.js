@@ -1,1 +1,4 @@
-module.exports = [require("./timer"), require("./cookie")];
+import cookie from "./cookie.js";
+import timer from "./timer.js";
+
+export default [timer, cookie];

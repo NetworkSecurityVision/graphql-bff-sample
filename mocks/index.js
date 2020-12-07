@@ -1,8 +1,8 @@
 // mocking ways
 // https://www.apollographql.com/docs/apollo-server/testing/mocking/
 
-const casual = require("casual");
-const { mocks: customScalarMocks } = require("graphql-scalars");
+import casual from "casual";
+import { mocks as customScalarMocks } from "graphql-scalars";
 
 function sleep(n) {
     if (!n) n = Math.random();
@@ -28,4 +28,4 @@ const MOCKS = {
     },
 };
 
-module.exports = MOCKS;
+export default MOCKS;

@@ -2,7 +2,7 @@
 https://github.com/mariadb-corporation/mariadb-connector-nodejs
 */
 
-const mariadb = require("mariadb");
+import mariadb from "mariadb";
 
 mariadb
     .createConnection({

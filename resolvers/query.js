@@ -1,14 +1,5 @@
 function ping() {
-    console.log(aaa);
     return "pong2";
-}
-
-function a() {
-    return 1;
-}
-
-function b() {
-    return "b";
 }
 
 function data() {
@@ -23,9 +14,7 @@ function data() {
     };
 }
 
-module.exports = {
+export default {
     ping,
     data,
-    // a,
-    // b,
 };

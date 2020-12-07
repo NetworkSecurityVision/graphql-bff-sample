@@ -1,6 +1,6 @@
 //https://github.com/b2a3e8/apollo-server-plugin-http-headers
 
-const cookie = require("cookie");
+import cookie from "cookie";
 
 function requestDidStart() {
     return {
@@ -34,6 +34,6 @@ function requestDidStart() {
         },
     };
 }
-module.exports = {
+export default {
     requestDidStart,
 };

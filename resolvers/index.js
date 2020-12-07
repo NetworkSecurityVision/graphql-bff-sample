@@ -1,7 +1,7 @@
-const Query = require("./query");
-const Mutation = require("./mutation");
-const Subscription = require("./subscription");
-const { resolvers: customScalarResolvers } = require("graphql-scalars");
+import Query from "./query.js";
+import Mutation from "./mutation.js";
+import Subscription from "./subscription.js";
+import { resolvers as customScalarResolvers } from "graphql-scalars";
 
 const resolvers = {
     ...customScalarResolvers,
@@ -10,4 +10,4 @@ const resolvers = {
     Subscription,
 };
 
-module.exports = resolvers;
+export default resolvers;

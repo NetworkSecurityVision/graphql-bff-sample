@@ -17,10 +17,10 @@
  * under the License.
  */
 
-var thrift = require('thrift');
-var Calculator = require("../server-demo/thrift/gen-nodejs/Calculator");
-var ttypes = require("../server-demo/thrift/gen-nodejs/tutorial_types");
-const assert = require('assert');
+import thrift from 'thrift';
+import Calculator from "../server-demo/thrift/gen-nodejs/Calculator.js";
+import ttypes from "../server-demo/thrift/gen-nodejs/tutorial_types.js";
+import assert from 'assert';
 
 var transport = thrift.TBufferedTransport;
 var protocol = thrift.TBinaryProtocol;

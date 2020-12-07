@@ -1,19 +1,19 @@
 /**
  * https://log4js-node.github.io/log4js-node/index.html
  */
-const log4js = require("log4js");
-const path = require("path");
+import log4js from "log4js";
+import path from "path";
 
 log4js.configure({
     appenders: {
         std: { type: "stdout" },
         app: {
             type: "file",
-            filename: path.join(__dirname, "./logs/access.log"),
+            filename: path.join(import.meta.url, "./logs/access.log"),
         },
         err: {
             type: "file",
-            filename: path.join(__dirname, "./logs/error.log"),
+            filename: path.join(import.meta.url, "./logs/error.log"),
         },
     },
     categories: {
@@ -60,25 +60,12 @@ function mark() {
     appLogger.mark(...arguments);
 }
 
-function startEngine(obj) {
-    let env = Object.fromEntries(
-        Object.keys(process.env)
-            .filter((i) => i.startsWith("BFF_"))
-            .map((i) => [i, process.env[i]])
-    );
-    appLogger.mark(`>>>>>>>>>>>>>>>>>>>>>>>>>>
-bff server started
-environments:   ${JSON.stringify(env, null, 4)}
-configs: ${JSON.stringify(obj, null, 4)}
-`);
-}
-
 // 监听未捕获的异常
 process.on("uncaughtException", (e) => error(e));
 // 监听Promise没有被捕获的失败函数
 process.on("unhandledRejection", (e, promise) => error(e));
 
-module.exports = {
+export default {
     error,
     debug,
     info,

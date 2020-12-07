@@ -12,7 +12,7 @@ https://www.npmjs.com/package/ctrip-apollo
 
 */
 
-const apollo = require("ctrip-apollo");
+import apollo from "ctrip-apollo";
 
 const namespace = apollo({
     host: "http://localhost:8080",

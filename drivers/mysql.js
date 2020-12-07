@@ -3,7 +3,7 @@ https://github.com/sidorares/node-mysql2
 */
 
 // get the client
-const mysql = require("mysql2");
+import mysql from "mysql2";
 
 // create the connection to database
 const conn = mysql.createConnection({
